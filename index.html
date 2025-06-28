@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Genre Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://images.alphacoders.com/517/517874.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            width: 50%;
+            margin: 80px auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+        }
+        h2 {
+            font-size: 2em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 90%;
+            height: 150px;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            resize: none;
+            font-family: 'Arial', sans-serif;
+        }
+        select, button {
+            padding: 12px;
+            width: 92%;
+            font-size: 1.2em;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+        select {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+        button {
+            background: red;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: darkred;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #ffcc00;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔥 Movie Genre Predictor 🔥</h2>
+        <form method="POST">
+            <textarea name="description" placeholder="Enter your epic movie description here..." required>{{ description }}</textarea>
+            <br>
+            <select name="model">
+                <option value="logistic_regression" {% if selected_model == 'logistic_regression' %}selected{% endif %}>Logistic Regression</option>
+                <option value="random_forest" {% if selected_model == 'random_forest' %}selected{% endif %}>Random Forest</option>
+                <option value="naive_bayes" {% if selected_model == 'naive_bayes' %}selected{% endif %}>Naive Bayes</option>
+                <option value="svm" {% if selected_model == 'svm' %}selected{% endif %}>SVM</option>
+            </select>
+            <br>
+            <button type="submit">🔥 Predict Genre 🔥</button>
+        </form>
+        {% if predicted_genre %}
+            <div class="result">
+                🐉 Predicted Genre: {{ predicted_genre }} 🐉
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
